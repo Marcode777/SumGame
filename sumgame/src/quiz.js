@@ -9,6 +9,7 @@ export default class Quiz extends React.Component{
 
     this.state = { riddle };
     this.renderOptions = this.renderOptions.bind(this);
+    this.checkResults = this.checkResults.bind(this);
   }
 
   randomNumber(min, max){
@@ -65,11 +66,20 @@ export default class Quiz extends React.Component{
     return riddle;
   }
 
+  checkResults(option){
+    console.log("checkResults called" + option);
+    if(this.state.riddle.answer === option){
+      console.log("This is the correct answer!");
+    } else{
+      console.log("wrong answer, bub.")
+    }
+  }
+
   renderOptions(){
     return(
         <div className="options">
           {this.state.riddle.resultsArray.map((option, i)=> 
-            <QuizOptions key={i} option={option} />
+            <QuizOptions key={i} option={option} checkResults={ (option) => this.checkResults(option)} />
               )
             }
         </div>

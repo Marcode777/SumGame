@@ -10,6 +10,7 @@ class App extends Component {
         <div className="App-header">
           <h3>SumGame</h3>
         </div>
+        <p>By Marco Sebello</p>
         <Quiz/>
       </div>
     );

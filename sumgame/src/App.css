@@ -8,12 +8,16 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: black;
   height: 180px;
   padding: 20px;
   font-size:55px;
   color: white;
 }
+
+
+
+
 
 .App-intro {
   font-size: large;
@@ -124,3 +128,5 @@
 .hide {
   display: none !important;
 }
+
+

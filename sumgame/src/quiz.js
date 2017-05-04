@@ -19,10 +19,10 @@ export default class Quiz extends React.Component{
   renderOptions(){
     return(
         <div className="options">
-            <QuizOptions/>
-            <QuizOptions/>
-            <QuizOptions/>
-            <QuizOptions/>
+          {this.state.riddle.resultsArray.map((option, i)=> 
+            <QuizOptions key={i} option={option} />
+              )
+            }
         </div>
       );
   }

@@ -1,15 +1,20 @@
 import React from 'react';
 import QuizOptions from './quizoptions';
+import classNames from 'classnames';
 
 export default class Quiz extends React.Component{
 
   constructor(){
     super()
     let riddle = this.playGame();
+    let correct = false;
+    let gameOver = false;
 
-    this.state = { riddle };
+
+    this.state = { riddle, correct, };
     this.renderOptions = this.renderOptions.bind(this);
     this.checkResults = this.checkResults.bind(this);
+    this.play = this.play.bind(this);
   }
 
   randomNumber(min, max){
@@ -61,17 +66,36 @@ export default class Quiz extends React.Component{
       field2: field2,
       answer: result
     };
-
     console.log(riddle);
-    return riddle;
-  }
+
+    if(this.state && this.state.gameOver){
+      this.setState({
+        riddle: riddle
+      })
+    } else {
+      return riddle;
+    }
+}
+
+   
+  
+    
+
 
   checkResults(option){
     console.log("checkResults called" + option);
     if(this.state.riddle.answer === option){
       console.log("This is the correct answer!");
+      this.setState({
+        correct: true,
+        gameOver: true
+      })
     } else{
       console.log("wrong answer, bub.")
+      this.setState({
+        correct: false,
+        gameOver: true
+      })
     }
   }
 
@@ -86,6 +110,22 @@ export default class Quiz extends React.Component{
       );
   }
 
+  renderMessage(){
+    if(this.state.correct){
+      return <h3>You got it correctly! Awesome! Click the button below to play again!</h3>
+    } else {
+      return <h3>You got it wrong, bub. But you can click the button below to play again!</h3>
+    }
+  }
+
+  play(){
+    this.setState({
+      correct: false,
+      gameOver: false
+    })
+    this.playGame();
+  }
+
   render(){
     return(
         <div className="quiz">
@@ -94,9 +134,11 @@ export default class Quiz extends React.Component{
               <p className="question">What is the sum of <span className="text-info">{this.state.riddle.field1}</span> and <span className="text-info">{this.state.riddle.field2}</span> ?</p>
               {this.renderOptions()}
             </div>
-    
+            <div className={classNames('after', {'hide': !this.state.gameOver}, {'wrong animated zoomInDown': !this.state.correct}, {'correct animated zoomInUp': this.state.correct})} >
+            <h3>{this.renderMessage()}</h3>
+            </div>
             <div className="play-again">
-              <a className="button">Play Again</a>
+              <a className="button" onClick={this.play}>Play Again</a>
             </div>
         </div>
       );

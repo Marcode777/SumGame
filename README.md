@@ -1,1 +1,3 @@
 # SumGame
+
+This is a logic game I built that displays two numbers, and then some choices.  The user has to add the two numbers and then choose which option they think is the correct sum of adding the two numbers.   If the user chooses the incorrect option, an animation displays that tells the user they are incorrect.  If the user chooses the correct option, an animation displays that tells the user they are correct. To use this app, clone it, then run command, npm install, then run command, npm start.

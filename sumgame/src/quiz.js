@@ -2,6 +2,8 @@ import React from 'react';
 import QuizOptions from './quizoptions';
 import classNames from 'classnames';
 
+import Clock from './clock';
+
 export default class Quiz extends React.Component{
 
   constructor(){
@@ -129,7 +131,7 @@ export default class Quiz extends React.Component{
   render(){
     return(
         <div className="quiz">
-          <h3>Clock</h3>
+          <Clock/>
             <div className="quiz-content">
               <p className="question">What is the sum of <span className="text-info">{this.state.riddle.field1}</span> and <span className="text-info">{this.state.riddle.field2}</span> ?</p>
               {this.renderOptions()}
